@@ -2,19 +2,25 @@ import pandas as pd
 from utils.all_utils import prepare_data
 from utils.model import perceptron
 
-XOR = {
-    'x1':[0,0,1,1],
-    'x2':[0,1,0,1],
-    'y':[0,1,1,0]
-}
+def main(data,eta,epochs):
 
-df = pd.DataFrame(XOR)
+    df = pd.DataFrame(data)
 
-X, y = prepare_data(df)
-ETA = 0.3
-EPOCHS = 10
+    X, y = prepare_data(df)
 
-model = perceptron(eta=ETA,epochs=EPOCHS)
-model.fit(X,y)
 
-_ = model.totalloss()
+    model = perceptron(eta=eta,epochs=epochs)
+    model.fit(X,y)
+
+    _ = model.totalloss() #dummy variable
+
+if __name__ == '__main__': #entry point
+
+    XOR = {
+        'x1': [0, 0, 1, 1],
+        'x2': [0, 1, 0, 1],
+        'y': [0, 1, 1, 0]
+    }
+    ETA = 0.3
+    EPOCHS = 10
+    main(data=XOR,eta=ETA,epochs=EPOCHS)
